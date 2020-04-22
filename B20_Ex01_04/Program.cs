@@ -4,7 +4,7 @@ using System.Text;
 
 namespace B20_Ex01_04
 {
-    class Program
+    public class Program
     {
         public static void Main()
         {
@@ -59,7 +59,7 @@ namespace B20_Ex01_04
             return io_strInputString.Length == 8;
         }
 
-        private static int isStringANumber(string io_strInputString)
+        public static int isStringANumber(string io_strInputString)
         {
             int i_inputNumber = 0;
             int.TryParse(io_strInputString, out i_inputNumber);

@@ -5,13 +5,13 @@ using System.Text;
 namespace B20_Ex01_05
 {
     class Program
-    { 
+    {
         public static void Main()
         {
             string strInputNumber = B20_Ex01_01.Program.getInputNumber();
-            if (B20_Ex01_01.Program.isNineLengthInput(strInputNumber))
+            int inputNumber = B20_Ex01_04.Program.isStringANumber(strInputNumber);
+            if (B20_Ex01_01.Program.isNineLengthInput(strInputNumber) && inputNumber != 0)
             {
-                int inputNumber = 10;
                 int[] args = new int[4];
                 args[0] = getBiggestDigit(inputNumber);
                 args[1] = getSmallestDigit(inputNumber);
@@ -23,7 +23,7 @@ namespace B20_Ex01_05
                       In addition, the number of divided by three digits is {2} and the number 
                       of digits that are bigger than the units digit is {3}", args);
             }
-        } 
+        }
 
         private static int getBiggestDigit(int i_inputNumber)
         {
@@ -62,7 +62,7 @@ namespace B20_Ex01_05
             for (int i = 0; i < strDecimalInputNumber.Length; i++)
             {
                 int digitToCheck = int.Parse(strDecimalInputNumber[i] + "");
-                if(digitToCheck % 3 == 0)
+                if (digitToCheck % 3 == 0)
                 {
                     countOfDividedByThreeDigits++;
                 }
@@ -75,9 +75,9 @@ namespace B20_Ex01_05
             int countNumberOfDigits = 0;
             string strDecimalInputNumber = i_inputNumber.ToString();
             int unitsDigit = int.Parse(strDecimalInputNumber[strDecimalInputNumber.Length - 1] + "");
-            for (int i = strDecimalInputNumber.Length - 2; i >= 0 ; i--)
+            for (int i = strDecimalInputNumber.Length - 2; i >= 0; i--)
             {
-                if(int.Parse(strDecimalInputNumber[i] + "") > unitsDigit)
+                if (int.Parse(strDecimalInputNumber[i] + "") > unitsDigit)
                 {
                     countNumberOfDigits++;
                 }
