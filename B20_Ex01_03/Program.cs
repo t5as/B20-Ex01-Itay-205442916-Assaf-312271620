@@ -15,14 +15,8 @@ namespace B20_Ex01_03
             if (hourGlassHeight % 2 == 0)
             {
                 hourGlassHeight -= 1;
-                B20_Ex01_02.Program.hourGlass(hourGlassHeight, hourGlassHeight, -2, 1);
-                B20_Ex01_02.Program.hourGlass(hourGlassHeight, 1, 2, hourGlassHeight);
             }
-            else
-            {
-                B20_Ex01_02.Program.hourGlass(hourGlassHeight, hourGlassHeight, -2, 1);
-                B20_Ex01_02.Program.hourGlass(hourGlassHeight, 3, 2, hourGlassHeight);
-            }
+            B20_Ex01_02.Program.hourGlass(hourGlassHeight, hourGlassHeight, -2);
         }
     }
 }

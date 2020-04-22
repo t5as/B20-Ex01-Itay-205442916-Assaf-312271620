@@ -7,26 +7,22 @@ namespace B20_Ex01_02
     {
         public static void Main()
         {
-            hourGlass(5, 5, -2, 1);
-            hourGlass(5, 3, 2, 5);
+            hourGlass(5, 5, -2);
         }
 
-        public static void hourGlass(int i_maxNumberOfStars, int i_numberOfStarsToPrint, int i_jumpToNextStep, int i_breakNumber)
+        public static void hourGlass(int i_maxNumberOfStars, int i_numberOfStarsToPrint, int i_jumpToNextStep)
         {
-            if (i_numberOfStarsToPrint == i_breakNumber)
+            string strLineToDraw = "";
+            int numberOfSpaces = (i_maxNumberOfStars - i_numberOfStarsToPrint) / 2;
+            strLineToDraw = strLineToDraw + strLineOfSpaces(numberOfSpaces, "") + strLineOfStars(i_numberOfStarsToPrint, "") + strLineOfSpaces(numberOfSpaces, "");
+            Console.WriteLine(strLineToDraw);
+            if (i_numberOfStarsToPrint != i_maxNumberOfStars || i_jumpToNextStep < 0)
             {
-                string strLineToDraw = "";
-                int numberOfSpaces = (i_maxNumberOfStars - i_breakNumber) / 2;
-                strLineToDraw = strLineToDraw + strLineOfSpaces(numberOfSpaces, "") + strLineOfStars(i_numberOfStarsToPrint, "") + strLineOfSpaces(numberOfSpaces, "");
-                Console.WriteLine(strLineToDraw);
-            }
-            else
-            {
-                string strLineToDraw = "";
-                int numberOfSpaces = (i_maxNumberOfStars - i_numberOfStarsToPrint) / 2;
-                strLineToDraw = strLineToDraw + strLineOfSpaces(numberOfSpaces, "") + strLineOfStars(i_numberOfStarsToPrint, "") + strLineOfSpaces(numberOfSpaces, "");
-                Console.WriteLine(strLineToDraw);
-                hourGlass(i_maxNumberOfStars, i_numberOfStarsToPrint + i_jumpToNextStep, i_jumpToNextStep, i_breakNumber);
+                if (i_numberOfStarsToPrint == 1)
+                {
+                    i_jumpToNextStep *= -1;
+                }
+                hourGlass(i_maxNumberOfStars, i_numberOfStarsToPrint + i_jumpToNextStep, i_jumpToNextStep);
             }
         }
 
