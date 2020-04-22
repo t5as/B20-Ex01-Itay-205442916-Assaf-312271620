@@ -16,12 +16,12 @@ namespace B20_Ex01_01
             for (int i = 0; i < 3; i++)
             {
                 string strInputNumber = getInputNumber();
-                bool isInputNumberValid = isNineLengthNumber(strInputNumber) && isBinaryNumber(strInputNumber);
+                bool isInputNumberValid = isNineLengthInput(strInputNumber) && isBinaryNumber(strInputNumber);
                 while (!isInputNumberValid)
                 {
                     Console.WriteLine("Invalid Input");
                     strInputNumber = getInputNumber();
-                    isInputNumberValid = isNineLengthNumber(strInputNumber) && isBinaryNumber(strInputNumber);
+                    isInputNumberValid = isNineLengthInput(strInputNumber) && isBinaryNumber(strInputNumber);
                 }
 
                 int inputNumber = binaryToDecimal(int.Parse(strInputNumber));
@@ -57,14 +57,14 @@ namespace B20_Ex01_01
             Console.WriteLine("The smallest number is: " + smallestInputNumber);
         }
 
-        private static string getInputNumber()
+        public static string getInputNumber()
         {
             Console.WriteLine("Please enter a 9 length positive binary number: ");
             string strInputNumber = Console.ReadLine();
             return strInputNumber;
         }
 
-        private static bool isNineLengthNumber(string io_strInputNumber)
+        public static bool isNineLengthInput(string io_strInputNumber)
         {
             return io_strInputNumber.Length == 9;
         }
