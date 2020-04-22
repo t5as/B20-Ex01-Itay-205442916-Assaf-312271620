@@ -7,13 +7,14 @@ namespace B20_Ex01_02
     {
         public static void Main()
         {
-            hourGlass(5, 5, -2);
+            HourGlass(5, 5, -2);
         }
 
-        public static void hourGlass(int i_maxNumberOfStars, int i_numberOfStarsToPrint, int i_jumpToNextStep)
+        public static void HourGlass(int i_maxNumberOfStars, int i_numberOfStarsToPrint, int i_jumpToNextStep)
         {
             string strLineToDraw = "";
             int numberOfSpaces = (i_maxNumberOfStars - i_numberOfStarsToPrint) / 2;
+
             strLineToDraw = strLineToDraw + strLineOfSpaces(numberOfSpaces, "") + strLineOfStars(i_numberOfStarsToPrint, "") + strLineOfSpaces(numberOfSpaces, "");
             Console.WriteLine(strLineToDraw);
             if (i_numberOfStarsToPrint != i_maxNumberOfStars || i_jumpToNextStep < 0)
@@ -22,13 +23,15 @@ namespace B20_Ex01_02
                 {
                     i_jumpToNextStep *= -1;
                 }
-                hourGlass(i_maxNumberOfStars, i_numberOfStarsToPrint + i_jumpToNextStep, i_jumpToNextStep);
+
+                HourGlass(i_maxNumberOfStars, i_numberOfStarsToPrint + i_jumpToNextStep, i_jumpToNextStep);
             }
         }
 
         private static string strLineOfStars(int i_numberOfStarsToDraw, string io_starLine)
         {
             StringBuilder lineOfStars = new StringBuilder(io_starLine, 1);
+
             if (i_numberOfStarsToDraw == 0)
             {
                 return lineOfStars.ToString();
@@ -43,6 +46,7 @@ namespace B20_Ex01_02
         private static string strLineOfSpaces(int i_numberOfSpacesToDraw, string io_spaceLine)
         {
             StringBuilder lineOfSpaces = new StringBuilder(io_spaceLine, 1);
+
             if (i_numberOfSpacesToDraw == 0)
             {
                 return lineOfSpaces.ToString();
@@ -53,6 +57,5 @@ namespace B20_Ex01_02
                 return strLineOfSpaces(i_numberOfSpacesToDraw - 1, lineOfSpaces.ToString());
             }
         }
-
     }
 }

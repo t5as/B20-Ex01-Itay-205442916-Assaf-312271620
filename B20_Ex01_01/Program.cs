@@ -6,22 +6,23 @@ namespace B20_Ex01_01
     {
         public static void Main()
         {
-
             int sumOfZeros = 0;
             int sumOfOnes = 0;
             int countAscendingDigitsNumbers = 0;
             int countNumberOfPowersOfTwo = 0;
             int biggestInputNumber = 0;
             int smallestInputNumber = 0;
+
             for (int i = 0; i < 3; i++)
             {
-                string strInputNumber = getInputNumber();
-                bool isInputNumberValid = isNineLengthInput(strInputNumber) && isBinaryNumber(strInputNumber);
+                string strInputNumber = GetInputNumber();
+                bool isInputNumberValid = IsNineLengthInput(strInputNumber) && isBinaryNumber(strInputNumber);
+
                 while (!isInputNumberValid)
                 {
                     Console.WriteLine("Invalid Input");
-                    strInputNumber = getInputNumber();
-                    isInputNumberValid = isNineLengthInput(strInputNumber) && isBinaryNumber(strInputNumber);
+                    strInputNumber = GetInputNumber();
+                    isInputNumberValid = IsNineLengthInput(strInputNumber) && isBinaryNumber(strInputNumber);
                 }
 
                 int inputNumber = binaryToDecimal(int.Parse(strInputNumber));
@@ -43,28 +44,29 @@ namespace B20_Ex01_01
                 {
                     biggestInputNumber = inputNumber;
                 }
+                
                 if (i == 0 || inputNumber < smallestInputNumber)
                 {
                     smallestInputNumber = inputNumber;
                 }
-
             }
-            Console.WriteLine("The average number of 0's in the three numbers is: " + sumOfZeros / 3);
-            Console.WriteLine("The average number of 1's in the three numbers is: " + sumOfOnes / 3);
+
+            Console.WriteLine("The average number of 0's in the three numbers is: " + (sumOfZeros / 3));
+            Console.WriteLine("The average number of 1's in the three numbers is: " + (sumOfOnes / 3));
             Console.WriteLine("The amount of power of 2's numbers is: " + countNumberOfPowersOfTwo);
             Console.WriteLine("The amount of numbers with ascending digits is: " + countAscendingDigitsNumbers);
             Console.WriteLine("The biggest number is: " + biggestInputNumber);
             Console.WriteLine("The smallest number is: " + smallestInputNumber);
         }
 
-        public static string getInputNumber()
+        public static string GetInputNumber()
         {
             Console.WriteLine("Please enter a 9 length positive binary number: ");
             string strInputNumber = Console.ReadLine();
             return strInputNumber;
         }
 
-        public static bool isNineLengthInput(string io_strInputNumber)
+        public static bool IsNineLengthInput(string io_strInputNumber)
         {
             return io_strInputNumber.Length == 9;
         }
@@ -73,6 +75,7 @@ namespace B20_Ex01_01
         {
             int numberOfZeros = 0;
             int numberOfOnes = 0;
+
             for (int i = 0; i < io_strInputNumber.Length; i++)
             {
                 if (io_strInputNumber[i] == '0')
@@ -84,16 +87,15 @@ namespace B20_Ex01_01
                     numberOfOnes++;
                 }
             }
+
             int[] numberOfZerosAndOnes = { numberOfZeros, numberOfOnes };
             return numberOfZerosAndOnes;
         }
 
-
         private static bool isBinaryNumber(string io_strInputNumber)
         {
             int[] numberOfZerosAndOnes = getNumberOfZerosAndOnes(io_strInputNumber);
-            return (numberOfZerosAndOnes[0] + numberOfZerosAndOnes[1] == io_strInputNumber.Length);
-
+            return numberOfZerosAndOnes[0] + numberOfZerosAndOnes[1] == io_strInputNumber.Length;
         }
 
         private static int binaryToDecimal(int io_inputNumber)
@@ -101,11 +103,13 @@ namespace B20_Ex01_01
             double baseCount = 0;
             int decimalValue = 0;
             string strToBinary = io_inputNumber.ToString();
+
             for (int i = strToBinary.Length - 1; i >= 0; i--)
             {
                 decimalValue += int.Parse(strToBinary[i] + "") * (int)Math.Pow(2, baseCount);
                 baseCount++;
             }
+
             return decimalValue;
         }
 
@@ -113,6 +117,7 @@ namespace B20_Ex01_01
         {
             bool areDigitsAscending = true;
             string strDecimalInputNumber = io_inputNumber.ToString();
+
             for (int i = 0; i < strDecimalInputNumber.Length - 1; i++)
             {
                 if (strDecimalInputNumber[i] >= strDecimalInputNumber[i + 1])

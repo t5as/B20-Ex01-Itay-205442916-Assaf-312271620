@@ -4,13 +4,14 @@ using System.Text;
 
 namespace B20_Ex01_05
 {
-    class Program
+    public class Program
     {
         public static void Main()
         {
-            string strInputNumber = B20_Ex01_01.Program.getInputNumber();
-            int inputNumber = B20_Ex01_04.Program.isStringANumber(strInputNumber);
-            if (B20_Ex01_01.Program.isNineLengthInput(strInputNumber) && inputNumber != 0)
+            string strInputNumber = B20_Ex01_01.Program.GetInputNumber();
+            int inputNumber = B20_Ex01_04.Program.IsStringANumber(strInputNumber);
+
+            if (B20_Ex01_01.Program.IsNineLengthInput(strInputNumber) && inputNumber != 0)
             {
                 int[] args = new int[4];
                 args[0] = getBiggestDigit(inputNumber);
@@ -30,6 +31,7 @@ namespace B20_Ex01_05
         {
             int maxNumber = 0;
             string strDecimalInputNumber = i_inputNumber.ToString();
+
             for (int i = 0; i < strDecimalInputNumber.Length; i++)
             {
                 int digitToCheck = int.Parse(strDecimalInputNumber[i] + "");
@@ -38,6 +40,7 @@ namespace B20_Ex01_05
                     maxNumber = digitToCheck;
                 }
             }
+
             return maxNumber;
         }
 
@@ -45,14 +48,17 @@ namespace B20_Ex01_05
         {
             int minNumber = 9;
             string strDecimalInputNumber = i_inputNumber.ToString();
+
             for (int i = 0; i < strDecimalInputNumber.Length; i++)
             {
                 int digitToCheck = int.Parse(strDecimalInputNumber[i] + "");
+
                 if (digitToCheck < minNumber)
                 {
                     minNumber = digitToCheck;
                 }
             }
+
             return minNumber;
         }
 
@@ -60,14 +66,17 @@ namespace B20_Ex01_05
         {
             int countOfDividedByThreeDigits = 0;
             string strDecimalInputNumber = i_inputNumber.ToString();
+
             for (int i = 0; i < strDecimalInputNumber.Length; i++)
             {
                 int digitToCheck = int.Parse(strDecimalInputNumber[i] + "");
+
                 if (digitToCheck % 3 == 0)
                 {
                     countOfDividedByThreeDigits++;
                 }
             }
+
             return countOfDividedByThreeDigits;
         }
 
@@ -76,6 +85,7 @@ namespace B20_Ex01_05
             int countNumberOfDigits = 0;
             string strDecimalInputNumber = i_inputNumber.ToString();
             int unitsDigit = int.Parse(strDecimalInputNumber[strDecimalInputNumber.Length - 1] + "");
+
             for (int i = strDecimalInputNumber.Length - 2; i >= 0; i--)
             {
                 if (int.Parse(strDecimalInputNumber[i] + "") > unitsDigit)
@@ -83,6 +93,7 @@ namespace B20_Ex01_05
                     countNumberOfDigits++;
                 }
             }
+
             return countNumberOfDigits;
         }
     }

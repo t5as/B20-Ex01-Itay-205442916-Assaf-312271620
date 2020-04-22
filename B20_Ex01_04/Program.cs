@@ -9,9 +9,9 @@ namespace B20_Ex01_04
         public static void Main()
         {
             string strInputString = getInputString();
-            int intInputNumber = isStringANumber(strInputString);
             bool isInputStringValid = isEightLengthString(strInputString)
-                                      && (intInputNumber != 0 || isStringEnglishChars(strInputString));
+                                      && (IsStringANumber(strInputString) || isStringEnglishChars(strInputString));
+
             if(!isInputStringValid)
             {
                 Console.WriteLine("Invalid Input");
@@ -27,24 +27,24 @@ namespace B20_Ex01_04
                     Console.WriteLine("The string " + strInputString + " is not a palindrome");
                 }
  
-                if (intInputNumber != 0)
+                if (IsStringANumber(strInputString))
                 {
-                    if(isNumberSplitIn5(intInputNumber))
+                    int intInput = int.Parse(strInputString);
+
+                    if(isNumberSplitIn5(intInput))
                     {
-                        Console.WriteLine("The number " + intInputNumber + " splits in 5");
+                        Console.WriteLine("The number " + intInput + " splits in 5");
                     }
                     else
                     {
-                        Console.WriteLine("The number " + intInputNumber + " does not split in 5");
+                        Console.WriteLine("The number " + intInput + " does not split in 5");
                     }
-                        
                 }
                 else
                 { 
                     Console.WriteLine("The string " + strInputString + " contains " + countNumberOfUppercaseLetters(strInputString) + " uppercase letters");
                 }
             }
-
         }
 
         private static string getInputString()
@@ -59,42 +59,56 @@ namespace B20_Ex01_04
             return io_strInputString.Length == 8;
         }
 
-        public static int isStringANumber(string io_strInputString)
+        public static bool IsStringANumber(string io_strInputString)
         {
-            int i_inputNumber = 0;
-            int.TryParse(io_strInputString, out i_inputNumber);
-            return i_inputNumber;
+            const bool v_OnlyDigits = true;
+
+            foreach (char i_char in io_strInputString)
+            {
+                if (!char.IsDigit(i_char))
+                {
+                    return !v_OnlyDigits;
+                }
+            }
+
+            return v_OnlyDigits;
         }
 
         private static bool isStringEnglishChars(string io_strInputString)
         {
+            const bool v_OnlyLetters = true;
+
             foreach (char i_char in io_strInputString)
             {
-                if (!Char.IsLetter(i_char))
-                    return false;
+                if(!char.IsLetter(i_char))
+                {
+                    return !v_OnlyLetters;
+                }
             }
-            return true;
+
+            return v_OnlyLetters;
         }
 
         private static bool isPalindrome(string io_strInputString)
         {
-            if(io_strInputString.Length <= 1)
+            const bool v_SubstringPalindrome = true;
+            int substringLength = io_strInputString.Length;
+
+            if (substringLength <= 1)
             {
-                return true;
+                return v_SubstringPalindrome;
             }
             else
             {
-                if(io_strInputString[0] != io_strInputString[io_strInputString.Length - 1])
+                if(io_strInputString[0] != io_strInputString[substringLength - 1])
                 {
-                    return false;
+                    return !v_SubstringPalindrome;
                 }
-
                 else
                 {
-                    return isPalindrome(io_strInputString.Substring(1, io_strInputString.Length - 2));
+                    return isPalindrome(io_strInputString.Substring(1, substringLength - 2));
                 }
             }
-
         }
 
         private static bool isNumberSplitIn5(int io_inputNumber)
@@ -105,13 +119,16 @@ namespace B20_Ex01_04
         private static int countNumberOfUppercaseLetters(string io_strInputString)
         {
             int uppercaseLettersCounter = 0;
+
             foreach (char i_char in io_strInputString)
             {
-                if (Char.IsUpper(i_char))
+                if(char.IsUpper(i_char))
+                {
                     uppercaseLettersCounter++;
+                }
             }
+
             return uppercaseLettersCounter;
         }
-
     }
 }
