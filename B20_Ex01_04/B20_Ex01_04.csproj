@@ -4,12 +4,13 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{6EDF418F-FD61-474A-AFA6-F748B7C01B89}</ProjectGuid>
+    <ProjectGuid>{B40C40FA-A65E-4649-B3C5-4BC6E56182DD}</ProjectGuid>
     <OutputType>Exe</OutputType>
-    <RootNamespace>B20_Ex01_03</RootNamespace>
-    <AssemblyName>B20_Ex01_03</AssemblyName>
+    <RootNamespace>B20_Ex01_04</RootNamespace>
+    <AssemblyName>B20_Ex01_04</AssemblyName>
     <TargetFrameworkVersion>v2.0</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <PlatformTarget>AnyCPU</PlatformTarget>
@@ -30,15 +31,6 @@
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
-  <PropertyGroup>
-    <StartupObject />
-  </PropertyGroup>
-  <ItemGroup>
-    <ProjectReference Include="..\B20_Ex01_02\B20_Ex01_02.csproj">
-      <Project>{e38c8454-b88d-4497-b66f-4407e336fb98}</Project>
-      <Name>B20_Ex01_02</Name>
-    </ProjectReference>
-  </ItemGroup>
   <ItemGroup>
     <Compile Include="Program.cs" />
   </ItemGroup>
