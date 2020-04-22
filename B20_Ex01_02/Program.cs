@@ -1,5 +1,5 @@
 ﻿using System;
-
+using System.Text;
 
 namespace B20_Ex01_02
 {
@@ -28,27 +28,29 @@ namespace B20_Ex01_02
 
         private static string strLineOfStars(int i_numberOfStarsToDraw, string io_starLine)
         {
+            StringBuilder lineOfStars = new StringBuilder(io_starLine, 1);
             if (i_numberOfStarsToDraw == 0)
             {
-                return io_starLine;
+                return lineOfStars.ToString();
             }
             else
             {
-                io_starLine = io_starLine + "*";
-                return strLineOfStars(i_numberOfStarsToDraw - 1, io_starLine);
+                lineOfStars.Append("*");
+                return strLineOfStars(i_numberOfStarsToDraw - 1, lineOfStars.ToString());
             }
         }
 
         private static string strLineOfSpaces(int i_numberOfSpacesToDraw, string io_spaceLine)
         {
+            StringBuilder lineOfSpaces = new StringBuilder(io_spaceLine, 1);
             if (i_numberOfSpacesToDraw == 0)
             {
-                return io_spaceLine;
+                return lineOfSpaces.ToString();
             }
             else
             {
-                io_spaceLine = io_spaceLine + " ";
-                return strLineOfSpaces(i_numberOfSpacesToDraw - 1, io_spaceLine);
+                lineOfSpaces.Append(" ");
+                return strLineOfSpaces(i_numberOfSpacesToDraw - 1, lineOfSpaces.ToString());
             }
         }
 

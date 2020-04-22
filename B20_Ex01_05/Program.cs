@@ -17,11 +17,12 @@ namespace B20_Ex01_05
                 args[1] = getSmallestDigit(inputNumber);
                 args[2] = numberOfDividedByThreeDigits(inputNumber);
                 args[3] = numberOfDigitsBiggerThanUnit(inputNumber);
-                string.Format(
-                    @"Hello,
-                      The Biggest digit int the number is {0} and the smallest digit is {1}. 
-                      In addition, the number of divided by three digits is {2} and the number 
-                      of digits that are bigger than the units digit is {3}", args);
+                string msg = string.Format(
+@"Hello,
+    The Biggest digit in the number is {0} and the smallest digit is {1}. 
+    In addition, the number of divided by three digits is {2} and the number 
+    of digits that are bigger than the units digit is {3}", args[0], args[1], args[2], args[3]);
+                Console.WriteLine(msg);
             }
         }
 
