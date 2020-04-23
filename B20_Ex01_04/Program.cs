@@ -9,41 +9,47 @@ namespace B20_Ex01_04
         public static void Main()
         {
             string strInputString = getInputString();
+            string palindrome = " ";
+            string numberOrEnglish = "";
+            int intInput = 0;
+            bool isStringNumber = int.TryParse(strInputString, out intInput);
             bool isInputStringValid = isEightLengthString(strInputString)
-                                      && (IsStringANumber(strInputString) || isStringEnglishChars(strInputString));
-
-            if(!isInputStringValid)
+                                      && (isStringNumber || isStringEnglishChars(strInputString));
+            
+            if (!isInputStringValid)
             {
                 Console.WriteLine("Invalid Input");
             }
             else
             {
-                if (isPalindrome(strInputString))
+                if (!isPalindrome(strInputString))
                 {
-                    Console.WriteLine("The string " + strInputString + " is a palindrome");
-                }
-                else
-                {
-                    Console.WriteLine("The string " + strInputString + " is not a palindrome");
+                    palindrome = " not ";
                 }
  
-                if (IsStringANumber(strInputString))
+                if (isStringNumber)
                 {
-                    int intInput = int.Parse(strInputString);
+                    string numberSplit = " ";
 
-                    if(isNumberSplitIn5(intInput))
+                    if (!isNumberSplitIn5(intInput))
                     {
-                        Console.WriteLine("The number " + intInput + " splits in 5");
+                        numberSplit = " does not ";
                     }
-                    else
-                    {
-                        Console.WriteLine("The number " + intInput + " does not split in 5");
-                    }
+
+                    numberOrEnglish = string.Format(
+                        @"The string is number that{0}split in 5", numberSplit);
                 }
                 else
                 { 
-                    Console.WriteLine("The string " + strInputString + " contains " + countNumberOfUppercaseLetters(strInputString) + " uppercase letters");
+                    numberOrEnglish = string.Format(
+                        @"The string is an English string and contains {0} uppercase letters", countNumberOfUppercaseLetters(strInputString));
                 }
+                
+                Console.WriteLine(string.Format(
+@"Hello, 
+The string is{0}a palindrome. 
+{1}.",
+                    palindrome, numberOrEnglish));
             }
         }
 
@@ -57,21 +63,6 @@ namespace B20_Ex01_04
         private static bool isEightLengthString(string io_strInputString)
         {
             return io_strInputString.Length == 8;
-        }
-
-        public static bool IsStringANumber(string io_strInputString)
-        {
-            const bool v_OnlyDigits = true;
-
-            foreach (char i_char in io_strInputString)
-            {
-                if (!char.IsDigit(i_char))
-                {
-                    return !v_OnlyDigits;
-                }
-            }
-
-            return v_OnlyDigits;
         }
 
         private static bool isStringEnglishChars(string io_strInputString)

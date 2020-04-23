@@ -9,7 +9,9 @@ namespace B20_Ex01_05
         public static void Main()
         {
             string strInputNumber = B20_Ex01_01.Program.GetInputNumber();
-            int inputNumber = B20_Ex01_04.Program.IsStringANumber(strInputNumber);
+            //int inputNumber = B20_Ex01_04.Program.IsStringANumber(strInputNumber);
+            int inputNumber = 0;
+            bool isStringNumber = int.TryParse(strInputNumber, out inputNumber);
 
             if (B20_Ex01_01.Program.IsNineLengthInput(strInputNumber) && inputNumber != 0)
             {
