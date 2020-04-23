@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace B20_Ex01_05
 {
@@ -8,25 +6,31 @@ namespace B20_Ex01_05
     {
         public static void Main()
         {
-            string strInputNumber = B20_Ex01_01.Program.GetInputNumber();
-            //int inputNumber = B20_Ex01_04.Program.IsStringANumber(strInputNumber);
+            string strInputNumber = getInputNumber();
             int inputNumber = 0;
             bool isStringNumber = int.TryParse(strInputNumber, out inputNumber);
 
             if (B20_Ex01_01.Program.IsNineLengthInput(strInputNumber) && inputNumber != 0)
             {
-                int[] args = new int[4];
-                args[0] = getBiggestDigit(inputNumber);
-                args[1] = getSmallestDigit(inputNumber);
-                args[2] = numberOfDividedByThreeDigits(inputNumber);
-                args[3] = numberOfDigitsBiggerThanUnit(inputNumber);
                 string msg = string.Format(
 @"Hello,
     The Biggest digit in the number is {0} and the smallest digit is {1}. 
     In addition, the number of divided by three digits is {2} and the number 
-    of digits that are bigger than the units digit is {3}", args[0], args[1], args[2], args[3]);
+    of digits that are bigger than the units digit is {3}",
+getBiggestDigit(inputNumber),
+getSmallestDigit(inputNumber),
+numberOfDividedByThreeDigits(inputNumber),
+numberOfDigitsBiggerThanUnit(inputNumber));
                 Console.WriteLine(msg);
             }
+        }
+
+        private static string getInputNumber()
+        {
+            Console.WriteLine("Please enter a 9 length positive number: ");
+            string strInputNumber = Console.ReadLine();
+            
+            return strInputNumber;
         }
 
         private static int getBiggestDigit(int i_inputNumber)
@@ -36,11 +40,8 @@ namespace B20_Ex01_05
 
             for (int i = 0; i < strDecimalInputNumber.Length; i++)
             {
-                int digitToCheck = int.Parse(strDecimalInputNumber[i] + "");
-                if (digitToCheck > maxNumber)
-                {
-                    maxNumber = digitToCheck;
-                }
+                int digitToCheck = int.Parse(strDecimalInputNumber[i] + string.Empty);
+                maxNumber = Math.Max(digitToCheck, maxNumber);
             }
 
             return maxNumber;
@@ -53,12 +54,8 @@ namespace B20_Ex01_05
 
             for (int i = 0; i < strDecimalInputNumber.Length; i++)
             {
-                int digitToCheck = int.Parse(strDecimalInputNumber[i] + "");
-
-                if (digitToCheck < minNumber)
-                {
-                    minNumber = digitToCheck;
-                }
+                int digitToCheck = int.Parse(strDecimalInputNumber[i] + string.Empty);
+                minNumber = Math.Min(digitToCheck, minNumber);
             }
 
             return minNumber;
@@ -71,7 +68,7 @@ namespace B20_Ex01_05
 
             for (int i = 0; i < strDecimalInputNumber.Length; i++)
             {
-                int digitToCheck = int.Parse(strDecimalInputNumber[i] + "");
+                int digitToCheck = int.Parse(strDecimalInputNumber[i] + string.Empty);
 
                 if (digitToCheck % 3 == 0)
                 {
@@ -86,11 +83,11 @@ namespace B20_Ex01_05
         {
             int countNumberOfDigits = 0;
             string strDecimalInputNumber = i_inputNumber.ToString();
-            int unitsDigit = int.Parse(strDecimalInputNumber[strDecimalInputNumber.Length - 1] + "");
+            int unitsDigit = int.Parse(strDecimalInputNumber[strDecimalInputNumber.Length - 1] + string.Empty);
 
             for (int i = strDecimalInputNumber.Length - 2; i >= 0; i--)
             {
-                if (int.Parse(strDecimalInputNumber[i] + "") > unitsDigit)
+                if (int.Parse(strDecimalInputNumber[i] + string.Empty) > unitsDigit)
                 {
                     countNumberOfDigits++;
                 }

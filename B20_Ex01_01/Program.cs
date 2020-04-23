@@ -15,13 +15,13 @@ namespace B20_Ex01_01
 
             for (int i = 0; i < 3; i++)
             {
-                string strInputNumber = GetInputNumber();
+                string strInputNumber = getInputNumber();
                 bool isInputNumberValid = IsNineLengthInput(strInputNumber) && isBinaryNumber(strInputNumber);
 
                 while (!isInputNumberValid)
                 {
                     Console.WriteLine("Invalid Input");
-                    strInputNumber = GetInputNumber();
+                    strInputNumber = getInputNumber();
                     isInputNumberValid = IsNineLengthInput(strInputNumber) && isBinaryNumber(strInputNumber);
                 }
 
@@ -40,83 +40,93 @@ namespace B20_Ex01_01
                     countAscendingDigitsNumbers++;
                 }
 
-                if (inputNumber > biggestInputNumber)
-                {
-                    biggestInputNumber = inputNumber;
-                }
-                
-                if (i == 0 || inputNumber < smallestInputNumber)
+                biggestInputNumber = Math.Max(inputNumber, smallestInputNumber);
+
+                if (i == 0)
                 {
                     smallestInputNumber = inputNumber;
                 }
+                
+                smallestInputNumber = Math.Min(inputNumber, smallestInputNumber);
             }
 
-            Console.WriteLine("The average number of 0's in the three numbers is: " + (sumOfZeros / 3));
-            Console.WriteLine("The average number of 1's in the three numbers is: " + (sumOfOnes / 3));
-            Console.WriteLine("The amount of power of 2's numbers is: " + countNumberOfPowersOfTwo);
-            Console.WriteLine("The amount of numbers with ascending digits is: " + countAscendingDigitsNumbers);
-            Console.WriteLine("The biggest number is: " + biggestInputNumber);
-            Console.WriteLine("The smallest number is: " + smallestInputNumber);
+            string msg = string.Format(
+@"The average number of 0's in the three numbers is: {0}
+The average number of 1's in the three numbers is: {1}
+The amount of power of 2's numbers is: {2}
+The amount of numbers with ascending digits is: {3}
+The biggest number is: {4} 
+The smallest number is: {5}", 
+sumOfZeros / 3, 
+sumOfOnes / 3,
+countNumberOfPowersOfTwo,
+countAscendingDigitsNumbers,
+biggestInputNumber,
+smallestInputNumber);
+            Console.WriteLine(msg);
         }
 
-        public static string GetInputNumber()
+        private static string getInputNumber()
         {
             Console.WriteLine("Please enter a 9 length positive binary number: ");
             string strInputNumber = Console.ReadLine();
+            
             return strInputNumber;
         }
 
-        public static bool IsNineLengthInput(string io_strInputNumber)
+        public static bool IsNineLengthInput(string i_strInputNumber)
         {
-            return io_strInputNumber.Length == 9;
+            return i_strInputNumber.Length == 9;
         }
 
-        private static int[] getNumberOfZerosAndOnes(string io_strInputNumber)
+        private static int[] getNumberOfZerosAndOnes(string i_strInputNumber)
         {
             int numberOfZeros = 0;
             int numberOfOnes = 0;
 
-            for (int i = 0; i < io_strInputNumber.Length; i++)
+            for (int i = 0; i < i_strInputNumber.Length; i++)
             {
-                if (io_strInputNumber[i] == '0')
+                if (i_strInputNumber[i] == '0')
                 {
                     numberOfZeros++;
                 }
-                else if (io_strInputNumber[i] == '1')
+                else if (i_strInputNumber[i] == '1')
                 {
                     numberOfOnes++;
                 }
             }
 
             int[] numberOfZerosAndOnes = { numberOfZeros, numberOfOnes };
+            
             return numberOfZerosAndOnes;
         }
 
-        private static bool isBinaryNumber(string io_strInputNumber)
+        private static bool isBinaryNumber(string i_strInputNumber)
         {
-            int[] numberOfZerosAndOnes = getNumberOfZerosAndOnes(io_strInputNumber);
-            return numberOfZerosAndOnes[0] + numberOfZerosAndOnes[1] == io_strInputNumber.Length;
+            int[] numberOfZerosAndOnes = getNumberOfZerosAndOnes(i_strInputNumber);
+            
+            return numberOfZerosAndOnes[0] + numberOfZerosAndOnes[1] == i_strInputNumber.Length;
         }
 
-        private static int binaryToDecimal(int io_inputNumber)
+        private static int binaryToDecimal(int i_inputNumber)
         {
             double baseCount = 0;
             int decimalValue = 0;
-            string strToBinary = io_inputNumber.ToString();
+            string strToBinary = i_inputNumber.ToString();
 
             for (int i = strToBinary.Length - 1; i >= 0; i--)
             {
-                decimalValue += int.Parse(strToBinary[i] + "") * (int)Math.Pow(2, baseCount);
+                decimalValue += int.Parse(strToBinary[i] + string.Empty) * (int)Math.Pow(2, baseCount);
                 baseCount++;
             }
 
             return decimalValue;
         }
 
-        private static bool areDigitsAscending(int io_inputNumber)
+        private static bool areDigitsAscending(int i_inputNumber)
         {
             bool areDigitsAscending = true;
-            string strDecimalInputNumber = io_inputNumber.ToString();
+            string strDecimalInputNumber = i_inputNumber.ToString();
 
             for (int i = 0; i < strDecimalInputNumber.Length - 1; i++)
             {

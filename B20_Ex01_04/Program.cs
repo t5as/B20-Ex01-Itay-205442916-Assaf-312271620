@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Text;
 
 namespace B20_Ex01_04
 {
@@ -9,8 +7,8 @@ namespace B20_Ex01_04
         public static void Main()
         {
             string strInputString = getInputString();
-            string palindrome = " ";
-            string numberOrEnglish = "";
+            string notPalindrome = " ";
+            string numberOrEnglish = string.Empty;
             int intInput = 0;
             bool isStringNumber = int.TryParse(strInputString, out intInput);
             bool isInputStringValid = isEightLengthString(strInputString)
@@ -24,20 +22,20 @@ namespace B20_Ex01_04
             {
                 if (!isPalindrome(strInputString))
                 {
-                    palindrome = " not ";
+                    notPalindrome = " not ";
                 }
  
                 if (isStringNumber)
                 {
-                    string numberSplit = " ";
+                    string numberNotDividedBy5 = " ";
 
                     if (!isNumberSplitIn5(intInput))
                     {
-                        numberSplit = " does not ";
+                        numberNotDividedBy5 = " not ";
                     }
 
                     numberOrEnglish = string.Format(
-                        @"The string is number that{0}split in 5", numberSplit);
+                        @"The string is a number that is{0}divided by 5", numberNotDividedBy5);
                 }
                 else
                 { 
@@ -48,8 +46,9 @@ namespace B20_Ex01_04
                 Console.WriteLine(string.Format(
 @"Hello, 
 The string is{0}a palindrome. 
-{1}.",
-                    palindrome, numberOrEnglish));
+{1}.", 
+notPalindrome, 
+numberOrEnglish));
             }
         }
 
@@ -57,63 +56,64 @@ The string is{0}a palindrome.
         {
             Console.WriteLine("Please enter a 8 chars string: ");
             string strInputNumber = Console.ReadLine();
+            
             return strInputNumber;
         }
 
-        private static bool isEightLengthString(string io_strInputString)
+        private static bool isEightLengthString(string i_strInputString)
         {
-            return io_strInputString.Length == 8;
+            return i_strInputString.Length == 8;
         }
 
-        private static bool isStringEnglishChars(string io_strInputString)
+        private static bool isStringEnglishChars(string i_strInputString)
         {
-            const bool v_OnlyLetters = true;
+            bool isOnlyLetters = true;
 
-            foreach (char i_char in io_strInputString)
+            foreach (char currentChar in i_strInputString)
             {
-                if(!char.IsLetter(i_char))
+                if(!char.IsLetter(currentChar))
                 {
-                    return !v_OnlyLetters;
+                    return !isOnlyLetters;
                 }
             }
 
-            return v_OnlyLetters;
+            return isOnlyLetters;
         }
 
-        private static bool isPalindrome(string io_strInputString)
+        private static bool isPalindrome(string i_strInputString)
         {
-            const bool v_SubstringPalindrome = true;
-            int substringLength = io_strInputString.Length;
+            bool isSubstringPalindrome = true;
+            int substringLength = i_strInputString.Length;
 
             if (substringLength <= 1)
             {
-                return v_SubstringPalindrome;
+                return isSubstringPalindrome;
             }
             else
             {
-                if(io_strInputString[0] != io_strInputString[substringLength - 1])
+                if(i_strInputString[0] != i_strInputString[substringLength - 1])
                 {
-                    return !v_SubstringPalindrome;
+                    return !isSubstringPalindrome;
                 }
                 else
                 {
-                    return isPalindrome(io_strInputString.Substring(1, substringLength - 2));
+                    return isPalindrome(i_strInputString.Substring(1, substringLength - 2));
                 }
             }
         }
 
-        private static bool isNumberSplitIn5(int io_inputNumber)
+        private static bool isNumberSplitIn5(int i_inputNumber)
         {
-            return io_inputNumber % 5 == 0;
+            return i_inputNumber % 5 == 0;
         }
 
-        private static int countNumberOfUppercaseLetters(string io_strInputString)
+        private static int countNumberOfUppercaseLetters(string i_strInputString)
         {
             int uppercaseLettersCounter = 0;
 
-            foreach (char i_char in io_strInputString)
+            foreach (char currentChar in i_strInputString)
             {
-                if(char.IsUpper(i_char))
+                if(char.IsUpper(currentChar))
                 {
                     uppercaseLettersCounter++;
                 }

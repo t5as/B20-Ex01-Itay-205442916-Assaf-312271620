@@ -12,10 +12,12 @@ namespace B20_Ex01_02
 
         public static void HourGlass(int i_maxNumberOfStars, int i_numberOfStarsToPrint, int i_jumpToNextStep)
         {
-            string strLineToDraw = "";
             int numberOfSpaces = (i_maxNumberOfStars - i_numberOfStarsToPrint) / 2;
+            StringBuilder strLineToDraw = new StringBuilder(string.Empty, 3);
 
-            strLineToDraw = strLineToDraw + strLineOfSpaces(numberOfSpaces, "") + strLineOfStars(i_numberOfStarsToPrint, "") + strLineOfSpaces(numberOfSpaces, "");
+            strLineToDraw.Append(strLineOfSpaces(numberOfSpaces, string.Empty));
+            strLineToDraw.Append(strLineOfStars(i_numberOfStarsToPrint, string.Empty));
+            strLineToDraw.Append(strLineOfSpaces(numberOfSpaces, string.Empty));
             Console.WriteLine(strLineToDraw);
             if (i_numberOfStarsToPrint != i_maxNumberOfStars || i_jumpToNextStep < 0)
             {
@@ -39,6 +41,7 @@ namespace B20_Ex01_02
             else
             {
                 lineOfStars.Append("*");
+                
                 return strLineOfStars(i_numberOfStarsToDraw - 1, lineOfStars.ToString());
             }
         }
@@ -54,6 +57,7 @@ namespace B20_Ex01_02
             else
             {
                 lineOfSpaces.Append(" ");
+                
                 return strLineOfSpaces(i_numberOfSpacesToDraw - 1, lineOfSpaces.ToString());
             }
         }
